@@ -4,21 +4,11 @@ import categories from '../categories'
 
 const CategorySelector = (props) => {
 
-  const categoryFields = categories.map(
-    (category, i) => {
-
-     const checked = category === props.activeCategory
-
-      return (
-        <CategoryField
-          key={ i }
-          checked={ checked }
-          category={ category }
-        />
-      )
-    }
-  )
-
+  const categoryFields = categories.map((category, i) => <CategoryField
+      key={ i }
+      checked={ category === props.activeCategory }
+      category={ category }
+    />)
 
   return (
     <div className="sixteen wide column">
