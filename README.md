@@ -6,11 +6,7 @@ For this project, you’ll be building out a React application that displays a l
 
 Part of what this code challenge is testing is your ability to follow given instructions. While you will definitely have a significant amount of freedom in how you implement the features, be sure to carefully read the directions for setting up the application.
 
-To get the data you will be working with, you must fetch from from [this provided API endpoint](https://boiling-brook-94902.herokuapp.com/transactions).
-
-```
-https://boiling-brook-94902.herokuapp.com/transactions
-```
+When you clone down this project, the component `<AccountContainer />` will be importing some sample transactions from `src/transactionsData`.  Use this data to get the functionality of the app working.  Once that is complete, you can replace that initial state with data you fetch from [this provided API endpoint](https://boiling-brook-94902.herokuapp.com/transactions).
 
 
 ## Deliverables
@@ -19,8 +15,6 @@ https://boiling-brook-94902.herokuapp.com/transactions
 - As a user, you should be able to see a table of transactions.
 - As a user, you should be able select a radio button that toggles the active category.
 - You should only see transactions that match the active category or *all transactions* if "All" is selected
-- As a user, you should also be able to filter by description using the search bar.
-- In the end, you should only see transactions that match the active category AND the has a description that includes the text the user typed into the search bar.
 
 
 ![example project](https://s3-us-west-2.amazonaws.com/curriculum-content/immersive_assessments/react-final-challenge.gif)
@@ -39,11 +33,10 @@ After cloning down the project
 
 You can approach this any way you would like but below is a reasonable approach to this challenge. If you are not sure where or how to begin, follow the steps here.
 
-1) Get the list of Transactions to display on the page as JSON data from the API at this url: [https://boiling-brook-94902.herokuapp.com/transactions](https://boiling-brook-94902.herokuapp.com/transactions).
-2) Render all transactions onto the table.
-3) Now that you are showing all transactions, focus on making the radio buttons work.
+1) Get the list of Transactions to display on the page given the transactions data being imported.
+2) After that is working, replace that data with the JSON you fetch from this url: [https://boiling-brook-94902.herokuapp.com/transactions](https://boiling-brook-94902.herokuapp.com/transactions). It will be in the same format as the  default data.
+3) Now that you are using the real data, focus on making the radio buttons work. Hint: _When a user changes the category, this information should be stored somewhere._
 4) Ensure that the user selecting a radio button renders only the transactions in the selected category (or render all transactions if the selected category is `'All'`).
-5) Build out the search bar as an additional feature, and only show transactions that have a description and includes the search term specified by the user.
 
 ## Criteria
 
@@ -57,3 +50,5 @@ We’ll be evaluating your code based on the following criteria:
 
 
 Good luck!
+
+<!-- [Backend Rails API](https://github.com/learn-co-curriculum/immersive-assessment-react-backend) -->
