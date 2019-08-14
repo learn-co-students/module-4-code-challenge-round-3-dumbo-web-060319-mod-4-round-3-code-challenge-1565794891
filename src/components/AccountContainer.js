@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
 import TransactionsList from './TransactionsList'
 import CategorySelector from './CategorySelector'
-import {transactions} from '../transactionsData'
+
 
 class AccountContainer extends Component {
-  constructor() {
-    super()
-    //... your code here
+  state = {
+    transactions: []
   }
 
-  handleChange() {
-    //... your code here
+  componentDidMount() {
+    fetch("https://boiling-brook-94902.herokuapp.com/transactions")
+    .then(res => res.json())
+    .then(transactionsData => {
+      // console.log(transactionsData)
+      this.setState({transactions: transactionsData})
+
+    })
+
   }
 
   render() {
-    console.log(transactions)
     return (
       <div className="ui grid container">
 
         <CategorySelector />
 
-        <TransactionsList />
+        <TransactionsList transactions={this.state.transactions}/>
 
       </div>
     )
