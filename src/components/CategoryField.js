@@ -1,22 +1,33 @@
 import React from 'react'
 
-const CategoryField = (props) => {
-  const { category, checked } = props
+class CategoryField extends React.Component {
 
-  return (
-    <div className=" four wide field">
-      <div className="ui radio checkbox">
+  handleClick = (event) => {
+    this.props.handleFilter(event.target.value)
+  }
 
-        <input
-          type="radio"
-          name="category"
-          checked={ checked }
-        />
-        <label>{ category }</label>
+  render(){
 
+    return (
+      <div className=" four wide field">
+        <div className="ui radio checkbox">
+
+          <input
+            type="radio"
+            name="category"
+            value={ this.props.category }
+            checked={ this.props.checked }
+            onClick={this.handleClick}
+          />
+          <label>{ this.props.category }</label>
+
+        </div>
       </div>
-    </div>
-  )
+    )
+
+  }
+
+
 }
 
 export default CategoryField
