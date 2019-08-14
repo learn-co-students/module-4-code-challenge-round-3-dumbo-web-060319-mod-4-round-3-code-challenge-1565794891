@@ -1,26 +1,46 @@
 import React, { Component } from 'react'
 import TransactionsList from './TransactionsList'
 import CategorySelector from './CategorySelector'
-import {transactions} from '../transactionsData'
 
 class AccountContainer extends Component {
-  constructor() {
-    super()
-    //... your code here
+  state = {
+    bankData: [],
+    category: "All"
   }
 
-  handleChange() {
-    //... your code here
+  handleCategoryChange = (e) => {
+    this.setState({ category: e.target.value })
+  }
+
+  componentDidMount() {
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+    .then(res => res.json())
+    .then((bankData) => {
+      this.setState({
+        bankData: bankData
+      })
+    })
+  }
+
+  whichTransactionsToRender = () => {
+    let copiedTransactions = [...this.state.bankData]
+    if (this.state.category === "All") {
+      return copiedTransactions
+    } else {
+      let filteredTransactions = copiedTransactions.filter(transaction => transaction.category === this.state.category)
+      return filteredTransactions
+    }
+
+
   }
 
   render() {
-    console.log(transactions)
     return (
       <div className="ui grid container">
 
-        <CategorySelector />
+        <CategorySelector handleCategoryChange={this.handleCategoryChange}/>
 
-        <TransactionsList />
+        <TransactionsList bankData={this.whichTransactionsToRender()} />
 
       </div>
     )
