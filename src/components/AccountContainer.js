@@ -4,23 +4,60 @@ import CategorySelector from './CategorySelector'
 import {transactions} from '../transactionsData'
 
 class AccountContainer extends Component {
-  constructor() {
-    super()
-    //... your code here
+  state = {
+    transactions: [],
+    copyTransaction: [],
+    selectedCatagory: "All"
   }
 
-  handleChange() {
+  componentDidMount() {
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+      .then(res => res.json())
+      .then(data => this.setState({
+        transactions: data,
+        copyTransaction: data
+      }))
+  }
+
+  handleChange = (event) =>  {
     //... your code here
+    console.log(event)
+    // console.log('hi')
+    if (event === 'All') {
+
+      let unfilteredTransaction = this.state.transactions
+      this.setState({
+        selectedCatagory: event,
+        copyTransaction: unfilteredTransaction
+
+      })
+    }
+    
+    else {
+
+      let filteredTransaction = this.state.transactions.filter(transaction => transaction.category.includes(event))
+      this.setState({
+        selectedCatagory: event,
+        copyTransaction: filteredTransaction
+      })
+    }
+    
+    // let filteredTransaction = this.state.transactions.filter(transaction => transaction.category.includes(event))
+    // this.setState({
+    //   selectedCatagory: event,
+    //   copyTransaction: filteredTransaction
+    // })
   }
 
   render() {
-    console.log(transactions)
+    // console.log(transactions)
+    // console.log(this.state.transactions)
     return (
       <div className="ui grid container">
 
-        <CategorySelector />
+        <CategorySelector handleChange={this.handleChange} transactions={this.state.copyTransaction} />
 
-        <TransactionsList />
+        <TransactionsList transactions={this.state.copyTransaction}  />
 
       </div>
     )

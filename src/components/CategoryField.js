@@ -1,6 +1,9 @@
 import React from 'react'
 
 const CategoryField = (props) => {
+
+ 
+
   const { category, checked } = props
 
   return (
@@ -8,9 +11,11 @@ const CategoryField = (props) => {
       <div className="ui radio checkbox">
 
         <input
+          onClick={event => props.handleChange(event.target.value)}
           type="radio"
           name="category"
-          checked={ checked }
+          checked={checked}
+          value={category}
         />
         <label>{ category }</label>
 

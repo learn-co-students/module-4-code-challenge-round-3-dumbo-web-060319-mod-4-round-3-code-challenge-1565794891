@@ -3,14 +3,16 @@ import CategoryField from './CategoryField'
 import categories from '../categories'
 
 const CategorySelector = (props) => {
-
+  // console.log(props.transactions)
   const categoryFields = categories.map(
     (category, i) => {
 
      const checked = category === props.activeCategory
 
       return (
-        <CategoryField
+        <CategoryField 
+          // onClick={props.handleChange}
+          handleChange={props.handleChange}
           key={ i }
           checked={ checked }
           category={ category }
